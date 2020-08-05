@@ -9,7 +9,6 @@ import styles from './Cards.module.css';
 
 const Cards = ({ data: { data } }) => {
   if (!data) return 'Loading...';
-  console.log(styles);
 
   return (
     <div className={styles.container}>
