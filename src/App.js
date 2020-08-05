@@ -8,14 +8,14 @@ function App() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetchData().then((data) => {
-      setData({ data });
+    fetchData().then((retrievedData) => {
+      setData({ data: retrievedData });
     });
   }, []);
 
   return (
     <div className={styles.container}>
-      <Cards />
+      <Cards data={data} />
       <CountryPicker />
       <Chart />
     </div>
