@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchData } from './components/api';
+import { fetchDataApi } from './api';
 
 import { Cards, Chart, CountryPicker } from './components';
 import styles from './App.module.css';
@@ -8,7 +8,7 @@ function App() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetchData().then((retrievedData) => {
+    fetchDataApi().then((retrievedData) => {
       setData({ data: retrievedData });
     });
   }, []);
