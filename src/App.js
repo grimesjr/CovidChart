@@ -15,7 +15,11 @@ function App() {
   }, [country]);
 
   async function handleCountryChange(selectedCountry) {
-    setCountry(selectedCountry);
+    if (selectedCountry === 'global') {
+      setCountry('');
+    } else {
+      setCountry(selectedCountry);
+    }
   }
 
   if (Object.keys(data).length === 0) return 'Loading';

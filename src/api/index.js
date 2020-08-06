@@ -44,6 +44,6 @@ export const countriesApi = async () => {
     .then((res) => res.json())
     .then((data) => data.countries.map((country) => country.name))
     .catch((error) => console.log(error));
-  console.log(countries);
+
   return countries;
 };
