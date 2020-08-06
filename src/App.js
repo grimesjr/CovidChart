@@ -6,18 +6,24 @@ import styles from './App.module.css';
 
 function App() {
   const [data, setData] = useState({});
+  const [country, setCountry] = useState('');
 
   useEffect(() => {
-    fetchDataApi().then((retrievedData) => {
+    fetchDataApi(country).then((retrievedData) => {
       setData({ data: retrievedData });
     });
-  }, []);
+  }, [country]);
 
+  async function handleCountryChange(selectedCountry) {
+    setCountry(selectedCountry);
+  }
+
+  if (Object.keys(data).length === 0) return 'Loading';
   return (
     <div className={styles.container}>
       <Cards data={data} />
-      <CountryPicker />
-      <Chart />
+      <CountryPicker handleCountryChange={handleCountryChange} />
+      <Chart data={data} country={country} />
     </div>
   );
 }

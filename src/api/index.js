@@ -1,7 +1,13 @@
 const url = 'http://covid19.mathdro.id/api';
 
-export const fetchDataApi = async () => {
-  const retrievedData = await fetch(url)
+export const fetchDataApi = async (country) => {
+  let newUrl = url;
+
+  if (country) {
+    newUrl = `${url}/countries/${country}`;
+  }
+
+  const retrievedData = await fetch(newUrl)
     .then((res) => res.json())
     .then((data) => {
       return data;
@@ -29,15 +35,15 @@ export const fetchDailyApi = async () => {
     deaths: data.deaths.total,
     date: data.reportDate,
   }));
-  console.log(modifiedData);
+
   return modifiedData;
 };
 
 export const countriesApi = async () => {
   const countries = await fetch(`${url}/countries`)
     .then((res) => res.json())
-    .then((data) => data)
+    .then((data) => data.countries.map((country) => country.name))
     .catch((error) => console.log(error));
-
+  console.log(countries);
   return countries;
 };
